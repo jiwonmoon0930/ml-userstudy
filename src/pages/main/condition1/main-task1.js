@@ -1,8 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import {Button, Modal, Checkbox, Input, Radio} from 'antd'
 import "antd/dist/antd.css";
-import "./main-task1.css";
-
+import "./main.css";
 
 import PredictionContainer from '../../components/predictionContainer'
 
@@ -129,51 +128,65 @@ function Main1Container() {
     return (
       <>
        {render ?
-            <div className="task-container">
-                <div className="column-container"> 
-                    <div className="left-column"> 
-                        <div className="task-img-frame">
-                            <img className="image-inner" src={baseImgUrl + currentImage}/>
-                        </div>
-                    </div>
 
-                    <div className="right-column"> 
-                        <div className="item-title">
-                            <t> You can present the outcomes of the algorithms on this side:</t> 
-                        </div>
-                            
-                        
-                        <Button className="btn-1"  onClick={()=>{handlePredict()}}>
-                            Ask the AI 
-                        </Button>
-
-                        { showPrediction ?
-                            <PredictionContainer 
-                                currentPrediction={currentPrediction}
-                            />
-                        :
-                            <>
-                            </>
-                        }
-                    </div>
+            <div className="container">
+            <div className="title">Main experiment</div>
+            <div className="column-container"> 
+            <div className="left-column"> 
+                <p> This is how you load an image:</p>
+                <div className="img-frame">
+                    <img className="image-inner" src={baseImgUrl + currentImage}/>
                 </div>
-                <div className="button-container"> 
-                    <Button variant="btn btn-success"  style={{marginLeft:"70%"}}  onClick={nextChange}>
-                        Next
-                    </Button>
-                </div>
+                <p> {imageCount + 1} / {totalImages} Images</p>
+            </div>
 
-                <div className="question-container">
-                    <div className="question">
-                        <t> Can you trust the seller?</t>
-                    </div>
+            <div className="right-column"> 
+            <div className="instr">
+                <t> You can present the outcomes of the algorithms on this side:</t> 
+            </div>
+                
+            
+            <Button className="btn-1"  onClick={()=>{handlePredict()}}>
+                Ask the AI 
+            </Button>
 
-                    <Radio.Group onChange={onChangeMultiple} value={choice}>
-                        <Radio value={1}> <t> Yes</t></Radio>
-                        <Radio value={2}> <t> Not sure</t></Radio>
-                        <Radio value={3}> <t> No</t></Radio>
-                    </Radio.Group>
-                </div>
+            { showPrediction ?
+                <PredictionContainer 
+                    currentPrediction={currentPrediction}
+                />
+            :
+                <>
+                </>
+            }
+
+            <div className="instr">
+                    <t> This is how you create a text box if you need user input:</t>
+            </div>
+            <input
+                type="text"
+                value={text}
+                onChange={onChangeInput}
+            />
+
+
+            <div className="instr">
+                <t> This is how you can ask a multiple choice question.</t>
+            </div>    
+                <Radio.Group onChange={onChangeMultiple} value={choice}>
+                    <Radio value={1}> <t> Option 1</t></Radio>
+                    <Radio value={2}> <t> Option 2</t></Radio>
+                    <Radio value={3}> <t> Option 3</t></Radio>
+                </Radio.Group>
+
+            </div>
+            </div>
+
+
+            <div className="button-container"> 
+                <Button variant="btn btn-success"  style={{marginLeft:"70%"}}  onClick={nextChange}>
+                    Next
+                </Button>
+            </div>
 
             {(moveToSurvey) && 
             <div className="instr"> 

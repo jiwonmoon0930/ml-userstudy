@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import { Button, Modal } from 'antd'
 import "antd/dist/antd.css";
-import "./main.css";
+import "./main-task1.css";
 
 function Main2Container() {
 

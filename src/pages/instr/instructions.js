@@ -12,15 +12,16 @@ function InstructionsContainer() {
     }
 
     const routeChange = () =>{ 
-        if (task % 2 === 0) {
-            let path = '/#/Main2'; 
-            window.location.assign(path);
-        } else {
-            let path = '/#/Main1'; 
-            window.location.assign(path);
-        }
-
-
+        let path = '/#/Main1';
+        window.location.assign(path);
+        
+        // if (task % 2 === 0) {
+        //     let path = '/#/Main2'; 
+        //     window.location.assign(path);
+        // } else {
+        //     let path = '/#/Main1'; 
+        //     window.location.assign(path);
+        // }
     }
 
     // connect with the backend to randomize the task 
@@ -40,19 +41,20 @@ function InstructionsContainer() {
 
     return (
       <div className="container">
-        <h1>Page for instructions</h1> 
+        <h1 className="title">
+            Instructions
+        </h1> 
 
         <div className="text"> 
-            Read the following instructions to complete the study:
-            <ol>
-                <li> Instruction No. 1</li>
-                <li> Instruction No. 2</li>
-            </ol> 
+            You have recently relocated to a new city and are in the process of furnishing your new apartment.
+            You will be using a second-hand marketplace website to find various pieces of furniture such as chairs,
+            tables, lamps, bed frames, drawers, etc. For each item, we will provide you with pictures, pricing details, and descriptions.
+            Your task is to evaluate each item based on the provided information and decide whether or not you would proceed to purchase the product.
         </div>
 
         <div className="text"> 
             <Checkbox onChange={checkboxHandler} style={{fontSize:"20px", textAlign: 'left', alignSelf: 'stretch'}}>
-                This is how you can add a checkbox.
+                I've understand the task.
             </Checkbox> 
         </div>
 
