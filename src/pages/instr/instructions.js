@@ -40,25 +40,25 @@ function InstructionsContainer() {
 
 
     return (
-      <div className="container">
-        <h1 className="title">
+      <div className="instr-container">
+        <h1 className="instr-title">
             Instructions
         </h1> 
 
-        <div className="text"> 
+        <div className="instr-text"> 
             You have recently relocated to a new city and are in the process of furnishing your new apartment.
             You will be using a second-hand marketplace website to find various pieces of furniture such as chairs,
             tables, lamps, bed frames, drawers, etc. For each item, we will provide you with pictures, pricing details, and descriptions.
             Your task is to evaluate each item based on the provided information and decide whether or not you would proceed to purchase the product.
         </div>
 
-        <div className="text"> 
+        <div className="instr-text"> 
             <Checkbox onChange={checkboxHandler} style={{fontSize:"20px", textAlign: 'left', alignSelf: 'stretch'}}>
                 I've understand the task.
             </Checkbox> 
         </div>
 
-        <div className="text"> 
+        <div className="instr-text"> 
             <Button disabled={!agree} variant="btn btn-success" onClick={routeChange}>
                 Start
             </Button>

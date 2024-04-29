@@ -1,7 +1,6 @@
-.container{
+/* .container{
     margin-top: 20px;
     width: 75%;
-    margin-left: 13%;
 }
 
 .title{
@@ -9,10 +8,29 @@
     margin-top: 60px;
     margin-bottom: 20px;
     text-align: center;
+} */
+
+.instr-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
 
-.text{
+.instr-title{
+    font-size: 25px;
+    font-weight: bold;
+    margin: 50px 0;
+    text-align: center;
+}
+
+
+.instr-text{
     font-size: 20px;
     margin-bottom: 20px;
     text-align: center;
+    max-width: 70%;
+
 }

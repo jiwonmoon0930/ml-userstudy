@@ -3,9 +3,6 @@ import {Button, Modal, Checkbox, Input, Radio} from 'antd'
 import "antd/dist/antd.css";
 import "./main-task1.css";
 
-
-import PredictionContainer from '../../components/predictionContainer'
-
 function Main1Container() {
     const [text, setText] = useState("");
     const [task, setTask] = useState(0);
@@ -13,9 +10,11 @@ function Main1Container() {
     const [tmpUser, setTmpUser] = useState(0);
     const [imageData, setImageData] = useState([]);
     const [currentImage, setCurrentImage] = useState("");
-    const [currentPrediction, setCurrentPrediction] = useState("");
+    const [currentName, setCurrentName] = useState("");
+    const [currentUser, setCurrentUser] = useState("");
+    const [currentPrice, setCurrentPrice] = useState("");
+    const [currentDescription, setCurrentDescription] = useState("");
     const [imageCount, setImageCount] = useState(0);
-    const [showPrediction, setShowPrediction] = useState(false);
     const [taskTime, setTaskTime] = useState((Date.now() + 1000 * 1000));
 
     const [currentTime, setCurrentTime] = useState(0);
@@ -23,8 +22,8 @@ function Main1Container() {
 
     const [render, setRender] = useState(false);
 
-    let totalImages = 3;
-    const baseImgUrl = "./";
+    let totalImages = 16;
+    const baseImgUrl = "./images/";
 
     const nextChange = () =>{
         if (choice<1) {
@@ -50,9 +49,11 @@ function Main1Container() {
                 setText("")
                 setImageCount(count);
                 setCurrentImage(imageData[count].name);
-                setCurrentPrediction(imageData[count].label);
+                setCurrentName(imageData[count].label);
+                setCurrentUser(imageData[count].user);
+                setCurrentPrice(imageData[count].price);
+                setCurrentDescription(imageData[count].description);
                 setTaskTime(Date.now())
-                setShowPrediction(false);
             }
         }
     }
@@ -74,14 +75,6 @@ function Main1Container() {
     const onChangeMultiple= e => {
         setChoice(e.target.value);
 
-    };
-
-    const onChangeInput = e => {
-        setText(e.target.value);
-    };
-
-    const handlePredict=()=>{
-        setShowPrediction(true);
     };
 
     // testing communication with backend
@@ -118,7 +111,10 @@ function Main1Container() {
             let image_name = data['imgs'][0].name
             setCurrentImage(image_name)
             console.log(image_name)
-            setCurrentPrediction(data['imgs'][0].label);
+            setCurrentName(data['imgs'][0].label);
+            setCurrentUser(data['imgs'][0].user);
+            setCurrentPrice(data['imgs'][0].price);
+            setCurrentDescription(data['imgs'][0].description);
             setRender(true);
             setTaskTime(Date.now())
         });
@@ -139,28 +135,19 @@ function Main1Container() {
 
                     <div className="right-column"> 
                         <div className="item-title">
-                            <t> You can present the outcomes of the algorithms on this side:</t> 
+                            {currentName}
                         </div>
-                            
-                        
-                        <Button className="btn-1"  onClick={()=>{handlePredict()}}>
-                            Ask the AI 
-                        </Button>
-
-                        { showPrediction ?
-                            <PredictionContainer 
-                                currentPrediction={currentPrediction}
-                            />
-                        :
-                            <>
-                            </>
-                        }
+                        <div className="item-user">
+                            <img className="item-user-icon" src={baseImgUrl+"user.png"}/>
+                            {" " + currentUser}
+                        </div>
+                        <div className="item-price">
+                            {currentPrice}
+                        </div>
+                        <div className="item-description">
+                            {"\"" + currentDescription + "\""}
+                        </div>
                     </div>
-                </div>
-                <div className="button-container"> 
-                    <Button variant="btn btn-success"  style={{marginLeft:"70%"}}  onClick={nextChange}>
-                        Next
-                    </Button>
                 </div>
 
                 <div className="question-container">
@@ -173,6 +160,12 @@ function Main1Container() {
                         <Radio value={2}> <t> Not sure</t></Radio>
                         <Radio value={3}> <t> No</t></Radio>
                     </Radio.Group>
+                </div>
+
+                <div className="button-container"> 
+                    <Button variant="btn btn-success" onClick={nextChange}>
+                        Next
+                    </Button>
                 </div>
 
             {(moveToSurvey) && 

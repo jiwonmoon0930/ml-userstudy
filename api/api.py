@@ -54,9 +54,38 @@ class Survey(db.Model):
 
 
 # define image names. You can load this information from a local file or a database
-images = [{'name': 'cardinal.jpg', 'label': 'Cardinal'}, 
-          {'name': 'bluejay.jpg', 'label': 'Blue jay'},
-          {'name': 'cedarwaxwing.jpg', 'label': 'Cedar waxwing'}]
+images = [{'name': 'bed-frame.png', 'label': 'Serene Skyline Upholstered Queen Bed Frame', 'user': 'willsoonfurn',
+           'price': 'US $176.96', 'description': 'Wake up to the serene embrace of our Skyline Upholstered Queen Bed, a true haven of comfort and elegance. The sumptuous headboard, upholstered in a luxurious deep blue fabric, features a classic vertical tuft design that adds an air of sophistication to any bedroom.'}, 
+          {'name': 'chair.jpg', 'label': 'Zenith Blue-Cushioned Teak Armchair', 'user': 'Jason1509',
+           'price': 'US $131.75', 'description': 'Embrace the harmony of minimalist design with our Zenith Blue-Cushioned Teak Armchair. This gently pre-loved chair boasts a solid teak wood construction, radiating a warm, inviting hue. The sturdy frame, highlighted by its clear lines and angular armrests, offers both support and modern elegance. Topped with a plush, navy blue cushion that contrasts beautifully against the natural wood, it provides an exceptional sitting experience. Ideal for accentuating any contemporary home or office space, this armchair is a testament to enduring style and comfort.'},
+          {'name': 'coffe-table.jpg', 'label': 'Vintage Roundabout Wooden Coffee Table', 'user': 'Zesof1039',
+           'price': 'US $83.19', 'description': 'Used for two months, good quality.'},
+          {'name': 'curtain.png', 'label': 'Sheer Voile Solid Window Curtain', 'user': 'VeiledElegance85',
+           'price': 'US $6.76', 'description': 'Its translucent fabric filters natural light with grace, creating a soft, airy ambiance. Perfect for achieving a delicate look while providing a touch of privacy.'},
+          {'name': 'desk-lamp.png', 'label': 'LED SleekFlex Desk Lamp', 'user': 'BrightIlluminators2024',
+           'price': 'US $15.59', 'description': 'A brand-new, unused, unopened, undamaged item in its original packaging (where packaging is applicable).'},
+          {'name': 'dining-table.png', 'label': 'Debbie Dining Table', 'user': 'dafeiwf',
+           'price': 'US $131.75', 'description': 'Lightly used with superb upkeep. The table presents slight signs of wear which do not detract from its overall beauty and functionality.'},
+          {'name': 'drawer.png', 'label': 'SleekStore Modern Drawer', 'user': 'jamesolesne1009102',
+           'price': 'US $99.19', 'description': 'A one-year-old bathroom drawer unit with smooth operation and spacious storage.'}, 
+          {'name': 'fans.png', 'label': 'Compact Breeze Tabletop Fan', 'user': 'CoolWindsSellers',
+           'price': 'US $15.00', 'description': 'Stay cool with this compact and efficient tabletop fan. It is lightweight, has multiple speed settings, and is in good working condition.'},
+          {'name': 'laundry-basket.png', 'label': 'Plastic Laundry Hamper', 'user': 'buytradellc',
+           'price': 'US $16.85', 'description': 'This sturdy and spacious laundry basket has served well for 2 years, showing its reliability.'},
+          {'name': 'microwave.png', 'label': 'Retro QuickHeat Microwave', 'user': 'VintageKitchenGoods',
+           'price': 'US $33.13', 'description': 'This classic white Retro QuickHeat Microwave adds a touch of vintage charm to your kitchen while offering modern convenience. Features simple dial controls and is in great working condition, perfect for quick meals and snacks.'},
+          {'name': 'mugs.png', 'label': 'Timeless Brew Ceramic Mug Set', 'user': 'MorningsJavaJolt',
+           'price': 'US $22.50', 'description': 'Set of ceramic mugs with "Time for Coffee" printed on each. Used, in good condition, with no chips or cracks. Ideal for your morning brew!'},
+          {'name': 'nightstand.png', 'label': 'Harbor Oak Mid-Century Nightstand', 'user': 'gandalf01',
+           'price': 'US $21.20', 'description': 'Used for two months, good quality. '},
+          {'name': 'pilow.png', 'label': 'Throw Pillows Insert Ultra Soft Bed', 'user': 'Utopia Deals',
+           'price': 'US $26.91', 'description': 'New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.'},
+          {'name': 'rug.png', 'label': 'Cozy Cotton Knit Round Rug', 'user': 'HomespunComforts21',
+           'price': 'US $45.00', 'description': 'Great condition, perfect for a minimalist or Scandinavian décor.'},
+          {'name': 'sofa.png', 'label': 'Brown Faux Leather Couch Used', 'user': 'allthefabulousthings',
+           'price': 'US $59.15', 'description': 'Used for three months.'},
+          {'name': 'towels.png', 'label': 'Pack of 5 Cotton Bath Towels', 'user': 'Utopia Deals',
+           'price': 'US $38.23', 'description': 'A brand-new, unused, and unworn item (including handmade items) in the original packaging.'}]
 
 # check that the backend is connected
 @app.route('/time')
