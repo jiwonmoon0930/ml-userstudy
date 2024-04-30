@@ -21,7 +21,7 @@ class User(db.Model):
     task = db.Column(db.Integer, nullable=False)
 
     def __init__(self, task):
-        self.task = task
+        self.task = task 
 
 class Responses(db.Model):
     id = db.Column(db.Integer, nullable=False, primary_key=True)
@@ -49,7 +49,6 @@ class Survey(db.Model):
       self.user_id = user_id
       self.q1 = q1
       self.q2 = q2
-
 
 # define image names. You can load this information from a local file or a database
 images = [{'name': 'bed-frame.png', 'label': 'Serene Skyline Upholstered Queen Bed Frame', 'user': 'willsoonfurn',
