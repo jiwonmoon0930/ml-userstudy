@@ -14,11 +14,21 @@ function Main3Container() {
     const [currentUser, setCurrentUser] = useState("");
     const [currentPrice, setCurrentPrice] = useState("");
     const [currentDescription, setCurrentDescription] = useState("");
-    const [currentSuggest, setCurrentSuggest] = useState("");
+
+    const [currentReview1, setCurrentReview1] = useState("");
+    const [currentReview2, setCurrentReview2] = useState("");
+    const [currentReview3, setCurrentReview3] = useState("");
+    const [currentAttri1, setCurrentAttri1] = useState("");
+    const [currentAttri2, setCurrentAttri2] = useState("");
+    const [currentAttri3, setCurrentAttri3] = useState("");
+    const [currentAttri4, setCurrentAttri4] = useState("");
+
     const [imageCount, setImageCount] = useState(0);
     const [taskTime, setTaskTime] = useState(null);
     const [currentTime, setCurrentTime] = useState(0);
     const [moveToSurvey, setMoveToSurvey] = useState(false);
+
+    const [visible, setVisible] = useState(false);
 
     const [render, setRender] = useState(false);
 
@@ -55,11 +65,26 @@ function Main3Container() {
                 setCurrentUser(imageData[count].user);
                 setCurrentPrice(imageData[count].price);
                 setCurrentDescription(imageData[count].description);
-                setCurrentSuggest(imageData[count].suggest);
+                setCurrentReview1(imageData[count].review1);
+                setCurrentReview2(imageData[count].review2);
+                setCurrentReview3(imageData[count].review3);
+                setCurrentAttri1(imageData[count].attribute1);
+                setCurrentAttri2(imageData[count].attribute2);
+                setCurrentAttri3(imageData[count].attribute3);
+                setCurrentAttri4(imageData[count].attribute4);
                 setTaskTime(Date.now())
             }
         }
     }
+
+    const handleDisplayInfo=()=>{
+        console.log('opening popup')
+        setVisible(true);
+    };
+    
+    const handleCancel = () => {
+        setVisible(!visible);
+    };
 
     const sendData = (obj) => {
         fetch('http://localhost:8080/responsesData', {
@@ -116,7 +141,13 @@ function Main3Container() {
             setCurrentUser(data['imgs'][0].user);
             setCurrentPrice(data['imgs'][0].price);
             setCurrentDescription(data['imgs'][0].description);
-            setCurrentSuggest(data['imgs'][0].suggest);
+            setCurrentReview1(data['imgs'][0].review1);
+            setCurrentReview2(data['imgs'][0].review2);
+            setCurrentReview3(data['imgs'][0].review3);
+            setCurrentAttri1(data['imgs'][0].attribute1);
+            setCurrentAttri2(data['imgs'][0].attribute2);
+            setCurrentAttri3(data['imgs'][0].attribute3);
+            setCurrentAttri4(data['imgs'][0].attribute4);
             setRender(true);
             setTaskTime(Date.now())
         });
@@ -148,8 +179,39 @@ function Main3Container() {
                         <div className="item-description">
                             {"\"" + currentDescription + "\""}
                         </div>
-                        <div className="item-suggestion">
-                            <strong>AI Suggestion:</strong> {currentSuggest}
+                        <div className="review-container">
+                            <div className="item-review" onClick={handleDisplayInfo}>
+                                <strong>""{currentReview1}</strong>
+                            </div>
+                            <Modal
+                                visible={visible}
+                                title="Additional information"
+                                centered
+                                footer={null}
+                                onCancel={handleCancel}
+                            >
+                                <div className="pop-container">
+                                    Hellow!{currentReview1}
+                                </div>
+                            </Modal>
+                            <div className="item-review" onClick={handleDisplayInfo}>
+                                <strong>""{currentReview2}</strong>
+                            </div>
+                            <div className="item-review" onClick={handleDisplayInfo}>
+                                <strong>""{currentReview3}</strong>
+                            </div>
+                        </div>
+                        <div className="item-description">
+                            {"1. " + currentAttri1}
+                        </div>
+                        <div className="item-description">
+                            {"2. " + currentAttri2} 
+                        </div>
+                        <div className="item-description">
+                            {"3. " + currentAttri3} 
+                        </div>
+                        <div className="item-description">
+                            {"4. " + currentAttri4} 
                         </div>
                     </div>
                 </div>
@@ -160,9 +222,9 @@ function Main3Container() {
                     </div>
 
                     <Radio.Group onChange={onChangeMultiple} value={choice}>
-                        <Radio value={1}> <t> Yes</t></Radio>
-                        <Radio value={2}> <t> Not sure</t></Radio>
-                        <Radio value={3}> <t> No</t></Radio>
+                        <Radio value={1}> <t>Yes</t></Radio>
+                        <Radio value={2}> <t>Not sure</t></Radio>
+                        <Radio value={3}> <t>No</t></Radio>
                     </Radio.Group>
                 </div>
 
