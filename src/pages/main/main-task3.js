@@ -3,7 +3,7 @@ import {Button, Modal, Checkbox, Input, Radio} from 'antd'
 import "antd/dist/antd.css";
 import "./main-task1.css";
 
-function Main2Container() {
+function Main3Container() {
     const [text, setText] = useState("");
     const [task, setTask] = useState(0);
     const [choice, setChoice] = useState(0);
@@ -85,7 +85,7 @@ function Main2Container() {
             setCurrentTime(data.time);
             console.log(data.time)
         });
-    }, []);
+        }, []);
 
     // create a new user here 
     useEffect(() => {
@@ -191,4 +191,4 @@ function Main2Container() {
       );
 }
 
-export default Main2Container;
+export default Main3Container;

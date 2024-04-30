@@ -15,7 +15,7 @@ function Main1Container() {
     const [currentPrice, setCurrentPrice] = useState("");
     const [currentDescription, setCurrentDescription] = useState("");
     const [imageCount, setImageCount] = useState(0);
-    const [taskTime, setTaskTime] = useState((Date.now() + 1000 * 1000));
+    const [taskTime, setTaskTime] = useState(null);
 
     const [currentTime, setCurrentTime] = useState(0);
     const [moveToSurvey, setMoveToSurvey] = useState(false);
@@ -43,6 +43,8 @@ function Main1Container() {
             if (count >= totalImages) {
                 console.log('done with images')
                 setMoveToSurvey(true);
+                let path = '/#/Survey'; 
+                window.location.assign(path);
             } else {
                 // reinitialize variables
                 setChoice(0); 
@@ -88,7 +90,7 @@ function Main1Container() {
 
     // create a new user here 
     useEffect(() => {
-        fetch('http://localhost:8080/setup_main')
+        fetch('http://localhost:8080/setup')
         .then(response => response.json())
         .then(data => {
             console.log(data)
@@ -119,7 +121,6 @@ function Main1Container() {
             setTaskTime(Date.now())
         });
     }, []);
-
 
 
     return (
@@ -156,9 +157,9 @@ function Main1Container() {
                     </div>
 
                     <Radio.Group onChange={onChangeMultiple} value={choice}>
-                        <Radio value={1}> <t> Yes</t></Radio>
-                        <Radio value={2}> <t> Not sure</t></Radio>
-                        <Radio value={3}> <t> No</t></Radio>
+                        <Radio value={1}> <t>Yes</t> </Radio>
+                        <Radio value={2}> <t>Not sure</t> </Radio>
+                        <Radio value={3}> <t>No</t> </Radio>
                     </Radio.Group>
                 </div>
 

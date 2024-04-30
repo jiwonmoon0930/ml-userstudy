@@ -1,48 +1,21 @@
 import {React, useEffect, useState} from 'react';
-import ReactDOM from 'react-dom';
-import { useParams } from "react-router-dom";
-import {
-  Form,
-  Select,
-  // Radio,
-  // Input,
-  Button,
-  Radio,
-} from 'antd';
-import './survey.css'
-const { Option } = Select;
-
-
-
-const formItemLayout = {
-    labelCol: {
-        span: 22,
-        offset:1
-    },
-    wrapperCol: {
-        span: 30,
-        offset:1
-    },
-};
+import { Form, Button, Radio } from 'antd';
+import './survey.css';
+import { useHistory } from "react-router-dom";
 
 const SurveyContainer = () => {
   const [form] = Form.useForm();
-  const [answers, setAnswers] = useState({});
-
+  const history = useHistory();  // Use useHistory for navigation
+  const [tmpUser, setTmpUser] = useState(0);
 
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
-    let copySaveArray = values
-    setAnswers(values)
-    // save data
-    let data = {
-        user_id: localStorage.getItem("user-id"),
-        q1: 1, 
-        q2: 2,
+    const data = {
+        user_id: tmpUser,  // Ensure the key here matches what you've set
+        q1: values.Q1, 
+        q2: values.Q2,
     };
-    sendData(data)
-    let path = '/#/End'; 
-    window.location.assign(path);
+    sendData(data);
   };
 
   const sendData = (obj) => {
@@ -52,73 +25,66 @@ const SurveyContainer = () => {
       headers: {
         "Content-type": "application/json; charset=UTF-8"
       }
-    }).then(response => response.json())
-      .then(message => {
-        console.log(message)
-        // getLastestTodos();
-      })
-  } 
+    })
+    .then(response => response.json())
+    .then(message => {
+        console.log(message);
+        history.push('/end');  // Use history to navigate
+    })
+    .catch(error => {
+        console.error('Error sending survey data:', error);
+    });
+  }
 
-
+  // create a new user here 
+  useEffect(() => {
+  fetch('http://localhost:8080/setup')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      console.log(data['task_number']);
+      // send user id as well
+      setTmpUser(data['user_id'])
+      });
+  }, []);
+    
 
   return (
     <div className="container"> 
-      <Form {...formItemLayout} layout='vertical'
-        name="validate_other"
-        onFinish={onFinish}
-        initialValues={{
-        }}
-      >
-
+      <Form form={form} layout='vertical' onFinish={onFinish}>
         <div className="title"> Study survey</div>
-        <div className='text'> This is how you can create a questionnaire at the end of the experiment. </div>
-
         <Form.Item 
             name="Q1" 
-            label = {
-                <p style={{fontSize: "20px"}}> 1. How confident were you in your responses to complete the task?</p>}
-            rules={[{
-                    required: true,
-                  },
-                ]}>
+            label="1. How confident were you in your responses to complete the task?"
+            rules={[{ required: true, message: "Please select an option!" }]}>
             <Radio.Group>
-                <Radio value="1" style={{fontSize: "18px"}}>Very unconfident</Radio>
-                <Radio value="2" style={{fontSize: "18px"}}>Unconfident</Radio>
-                <Radio value="3" style={{fontSize: "18px"}}>Average</Radio>
-                <Radio value="4" style={{fontSize: "18px"}}>Confident</Radio>
-                <Radio value="5" style={{fontSize: "18px"}}>Very confident</Radio>
+                <Radio value="1">Very unconfident</Radio>
+                <Radio value="2">Unconfident</Radio>
+                <Radio value="3">Average</Radio>
+                <Radio value="4">Confident</Radio>
+                <Radio value="5">Very confident</Radio>
             </Radio.Group>
         </Form.Item>
-        
 
         <Form.Item 
             name="Q2" 
-            label = {
-                <p style={{fontSize: "20px"}}> 2. How successful do you think you were you in accomplishing what you were asked to do? </p>}
-            rules={[{
-                    required: true,
-                  },
-                ]}>
+            label="2. How much did you rely on the AI's suggestion?"
+            rules={[{ required: true, message: "Please select an option!" }]}>
             <Radio.Group>
-                <Radio value="1" style={{fontSize: "18px"}}>Poor</Radio>
-                <Radio value="2" style={{fontSize: "18px"}}>Fair</Radio>
-                <Radio value="3" style={{fontSize: "18px"}}>Average</Radio>
-                <Radio value="4" style={{fontSize: "18px"}}>Good</Radio>
-                <Radio value="5" style={{fontSize: "18px"}}>Excellent</Radio>
+                <Radio value="1">Very unrelient</Radio>
+                <Radio value="2">Unrelient</Radio>
+                <Radio value="3">Average</Radio>
+                <Radio value="4">Relient</Radio>
+                <Radio value="5">Very Relient</Radio>
             </Radio.Group>
         </Form.Item>
 
-
-
-         <Form.Item >
-         
-        <Button type="primary" htmlType="submit">
-        Submit
-        </Button>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">Submit</Button>
         </Form.Item>
       </Form>
-      
     </div>
   );
 };
+
 export default SurveyContainer;

@@ -16,14 +16,12 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
-
 class User(db.Model):
     user_id = db.Column(db.Integer, nullable=False, primary_key=True)
     task = db.Column(db.Integer, nullable=False)
 
     def __init__(self, task):
         self.task = task
-
 
 class Responses(db.Model):
     id = db.Column(db.Integer, nullable=False, primary_key=True)
@@ -55,37 +53,53 @@ class Survey(db.Model):
 
 # define image names. You can load this information from a local file or a database
 images = [{'name': 'bed-frame.png', 'label': 'Serene Skyline Upholstered Queen Bed Frame', 'user': 'willsoonfurn',
-           'price': 'US $176.96', 'description': 'Wake up to the serene embrace of our Skyline Upholstered Queen Bed, a true haven of comfort and elegance. The sumptuous headboard, upholstered in a luxurious deep blue fabric, features a classic vertical tuft design that adds an air of sophistication to any bedroom.'}, 
+           'price': 'US $176.96', 'description': 'Wake up to the serene embrace of our Skyline Upholstered Queen Bed, a true haven of comfort and elegance. The sumptuous headboard, upholstered in a luxurious deep blue fabric, features a classic vertical tuft design that adds an air of sophistication to any bedroom.',
+           'suggest': 'Trustable'}, 
           {'name': 'chair.jpg', 'label': 'Zenith Blue-Cushioned Teak Armchair', 'user': 'Jason1509',
-           'price': 'US $131.75', 'description': 'Embrace the harmony of minimalist design with our Zenith Blue-Cushioned Teak Armchair. This gently pre-loved chair boasts a solid teak wood construction, radiating a warm, inviting hue. The sturdy frame, highlighted by its clear lines and angular armrests, offers both support and modern elegance. Topped with a plush, navy blue cushion that contrasts beautifully against the natural wood, it provides an exceptional sitting experience. Ideal for accentuating any contemporary home or office space, this armchair is a testament to enduring style and comfort.'},
+           'price': 'US $131.75', 'description': 'Embrace the harmony of minimalist design with our Zenith Blue-Cushioned Teak Armchair. This gently pre-loved chair boasts a solid teak wood construction, radiating a warm, inviting hue. The sturdy frame, highlighted by its clear lines and angular armrests, offers both support and modern elegance. Topped with a plush, navy blue cushion that contrasts beautifully against the natural wood, it provides an exceptional sitting experience. Ideal for accentuating any contemporary home or office space, this armchair is a testament to enduring style and comfort.',
+           'suggest': 'Trustable'},
           {'name': 'coffe-table.jpg', 'label': 'Vintage Roundabout Wooden Coffee Table', 'user': 'Zesof1039',
-           'price': 'US $83.19', 'description': 'Used for two months, good quality.'},
+           'price': 'US $83.19', 'description': 'Used for two months, good quality.',
+           'suggest': 'Trustable'},
           {'name': 'curtain.png', 'label': 'Sheer Voile Solid Window Curtain', 'user': 'VeiledElegance85',
-           'price': 'US $6.76', 'description': 'Its translucent fabric filters natural light with grace, creating a soft, airy ambiance. Perfect for achieving a delicate look while providing a touch of privacy.'},
+           'price': 'US $6.76', 'description': 'Its translucent fabric filters natural light with grace, creating a soft, airy ambiance. Perfect for achieving a delicate look while providing a touch of privacy.',
+           'suggest': 'Trustable'},
           {'name': 'desk-lamp.png', 'label': 'LED SleekFlex Desk Lamp', 'user': 'BrightIlluminators2024',
-           'price': 'US $15.59', 'description': 'A brand-new, unused, unopened, undamaged item in its original packaging (where packaging is applicable).'},
+           'price': 'US $15.59', 'description': 'A brand-new, unused, unopened, undamaged item in its original packaging (where packaging is applicable).',
+           'suggest': 'Trustable'},
           {'name': 'dining-table.png', 'label': 'Debbie Dining Table', 'user': 'dafeiwf',
-           'price': 'US $131.75', 'description': 'Lightly used with superb upkeep. The table presents slight signs of wear which do not detract from its overall beauty and functionality.'},
+           'price': 'US $131.75', 'description': 'Lightly used with superb upkeep. The table presents slight signs of wear which do not detract from its overall beauty and functionality.',
+           'suggest': 'Trustable'},
           {'name': 'drawer.png', 'label': 'SleekStore Modern Drawer', 'user': 'jamesolesne1009102',
-           'price': 'US $99.19', 'description': 'A one-year-old bathroom drawer unit with smooth operation and spacious storage.'}, 
+           'price': 'US $99.19', 'description': 'A one-year-old bathroom drawer unit with smooth operation and spacious storage.',
+           'suggest': 'Trustable'}, 
           {'name': 'fans.png', 'label': 'Compact Breeze Tabletop Fan', 'user': 'CoolWindsSellers',
-           'price': 'US $15.00', 'description': 'Stay cool with this compact and efficient tabletop fan. It is lightweight, has multiple speed settings, and is in good working condition.'},
+           'price': 'US $15.00', 'description': 'Stay cool with this compact and efficient tabletop fan. It is lightweight, has multiple speed settings, and is in good working condition.',
+           'suggest': 'Trustable'},
           {'name': 'laundry-basket.png', 'label': 'Plastic Laundry Hamper', 'user': 'buytradellc',
-           'price': 'US $16.85', 'description': 'This sturdy and spacious laundry basket has served well for 2 years, showing its reliability.'},
+           'price': 'US $16.85', 'description': 'This sturdy and spacious laundry basket has served well for 2 years, showing its reliability.',
+           'suggest': 'Trustable'},
           {'name': 'microwave.png', 'label': 'Retro QuickHeat Microwave', 'user': 'VintageKitchenGoods',
-           'price': 'US $33.13', 'description': 'This classic white Retro QuickHeat Microwave adds a touch of vintage charm to your kitchen while offering modern convenience. Features simple dial controls and is in great working condition, perfect for quick meals and snacks.'},
+           'price': 'US $33.13', 'description': 'This classic white Retro QuickHeat Microwave adds a touch of vintage charm to your kitchen while offering modern convenience. Features simple dial controls and is in great working condition, perfect for quick meals and snacks.',
+           'suggest': 'Trustable'},
           {'name': 'mugs.png', 'label': 'Timeless Brew Ceramic Mug Set', 'user': 'MorningsJavaJolt',
-           'price': 'US $22.50', 'description': 'Set of ceramic mugs with "Time for Coffee" printed on each. Used, in good condition, with no chips or cracks. Ideal for your morning brew!'},
+           'price': 'US $22.50', 'description': 'Set of ceramic mugs with "Time for Coffee" printed on each. Used, in good condition, with no chips or cracks. Ideal for your morning brew!',
+           'suggest': 'Trustable'},
           {'name': 'nightstand.png', 'label': 'Harbor Oak Mid-Century Nightstand', 'user': 'gandalf01',
-           'price': 'US $21.20', 'description': 'Used for two months, good quality. '},
+           'price': 'US $21.20', 'description': 'Used for two months, good quality.',
+           'suggest': 'Trustable'},
           {'name': 'pilow.png', 'label': 'Throw Pillows Insert Ultra Soft Bed', 'user': 'Utopia Deals',
-           'price': 'US $26.91', 'description': 'New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.'},
+           'price': 'US $26.91', 'description': 'New with tags: A brand-new, unused, and unworn item (including handmade items) in the original packaging (such as the original box or bag) and/or with the original tags attached.',
+           'suggest': 'Trustable'},
           {'name': 'rug.png', 'label': 'Cozy Cotton Knit Round Rug', 'user': 'HomespunComforts21',
-           'price': 'US $45.00', 'description': 'Great condition, perfect for a minimalist or Scandinavian décor.'},
+           'price': 'US $45.00', 'description': 'Great condition, perfect for a minimalist or Scandinavian décor.',
+           'suggest': 'Trustable'},
           {'name': 'sofa.png', 'label': 'Brown Faux Leather Couch Used', 'user': 'allthefabulousthings',
-           'price': 'US $59.15', 'description': 'Used for three months.'},
+           'price': 'US $59.15', 'description': 'Used for three months.',
+           'suggest': 'Trustable'},
           {'name': 'towels.png', 'label': 'Pack of 5 Cotton Bath Towels', 'user': 'Utopia Deals',
-           'price': 'US $38.23', 'description': 'A brand-new, unused, and unworn item (including handmade items) in the original packaging.'}]
+           'price': 'US $38.23', 'description': 'A brand-new, unused, and unworn item (including handmade items) in the original packaging.',
+           'suggest': 'Trustable'}]
 
 # check that the backend is connected
 @app.route('/time')
@@ -97,7 +111,7 @@ def get_current_time():
 # use case 1: assign a random task to the current user and create an id
 @app.route('/setup', methods=['GET'])
 def setup():
-    task_num = random.randint(1,2)
+    task_num = random.randint(1,3)
     new_user = User(task=task_num)
     db.session.add(new_user)
     db.session.commit()
@@ -116,13 +130,60 @@ def setup_main():
     response = {'user_id': user_id, 'task_number': task_num}
     return jsonify(response)
 
+# use case 1: assign a random task to the current user and create an id
+# @app.route('/setup', methods=['GET'])
+# def setup():
+#     task_num = random.randint(1,2)
+#     new_user = User(task=task_num)
+#     db.session.add(new_user)
+#     db.session.commit()
+#     user_id = new_user.user_id
+#     response = {'user_id': user_id, 'task_number': task_num}
+#     return jsonify(response)
+
+# # task assignment
+# @app.route('/setuptask', methods=['POST'])
+# def setuptask():
+#     if request.method == 'POST':
+#         data = request.get_json()  # Get the JSON data sent from the frontend
+#         new_user = User(task=data['task'])  # Create a new User with the task
+#         db.session.add(new_user)
+#         db.session.commit()
+#         return jsonify({'user_id': new_user.user_id, 'task_number': new_user.task}), 201  # Return some useful information
+#     else:
+#         return jsonify({'error': 'Method not allowed'}), 405
+
+
+# # getting task number
+# @app.route('/getTask', methods=['GET'])
+# def getTask():
+#     user_id = request.args.get('user_id', type=int) 
+#     if not user_id:
+#         return jsonify({'error': 'User ID is required'}), 400
+
+#     user = User.query.filter_by(user_id=user_id).first()  # Query the user from the database
+#     if user:
+#         return jsonify({'user_id': user.user_id, 'task_number': user.task})
+#     else:
+#         return jsonify({'error': 'User not found'}), 404
+
+# @app.route('/setup_main', methods=['GET'])
+# def setup_main():
+#     # fix the task to 1 to display Main1
+#     task_num = 1
+#     new_user = User(task=task_num)
+#     db.session.add(new_user)
+#     db.session.commit()
+#     user_id = new_user.user_id
+#     response = {'user_id': user_id, 'task_number': task_num}
+#     return jsonify(response)
+
 # use case 2:# define the order of the images to be loaded
 @app.route('/imageInfo', methods=['GET'])
 def getImageInfo():
     random.shuffle(images)
     response_body = {'imgs': images}
     return jsonify(response_body)
-
 
 # send data from frontend to backend
 @app.route('/responsesData', methods=['POST'])

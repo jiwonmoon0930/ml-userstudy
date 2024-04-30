@@ -12,16 +12,16 @@ function InstructionsContainer() {
     }
 
     const routeChange = () =>{ 
-        let path = '/#/Main1';
-        window.location.assign(path);
-        
-        // if (task % 2 === 0) {
-        //     let path = '/#/Main2'; 
-        //     window.location.assign(path);
-        // } else {
-        //     let path = '/#/Main1'; 
-        //     window.location.assign(path);
-        // }
+        if (task == 1) {
+            let path = '/#/Main1';
+            window.location.assign(path);
+        } else if (task == 2) {
+            let path = '/#/Main2';
+            window.location.assign(path);
+        } else {
+            let path = '/#/Main3';
+            window.location.assign(path);
+        }
     }
 
     // connect with the backend to randomize the task 
