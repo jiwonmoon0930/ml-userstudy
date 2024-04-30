@@ -34,6 +34,7 @@ function Main3Container() {
     const [moveToSurvey, setMoveToSurvey] = useState(false);
 
     const [visible, setVisible] = useState(false);
+    const [modalContent, setModalContent] = useState("");
 
     const [render, setRender] = useState(false);
 
@@ -95,6 +96,11 @@ function Main3Container() {
     
     const handleCancel = () => {
         setVisible(!visible);
+    };
+
+    const showModal = (content) => {
+        setModalContent(content);
+        setVisible(true);
     };
 
     const sendData = (obj) => {
@@ -197,27 +203,25 @@ function Main3Container() {
                             {"\"" + currentDescription + "\""}
                         </div>
                         <div className="review-container">
-                            <div className="item-review" onClick={handleDisplayInfo}>
+                            <div className="item-review" onClick={() => showModal(currentReview1)}>
                                 <strong>{keyword1}</strong>
                             </div>
-                            <Modal
-                                visible={visible}
-                                title="Additional information"
-                                centered
-                                footer={null}
-                                onCancel={handleCancel}
-                            >
-                                <div className="pop-container">
-                                    Hello!{currentReview1}
-                                </div>
-                            </Modal>
-                            <div className="item-review" onClick={handleDisplayInfo}>
+                            <div className="item-review" onClick={() => showModal(currentReview2)}>
                                 <strong>{keyword2}</strong>
                             </div>
-                            <div className="item-review" onClick={handleDisplayInfo}>
+                            <div className="item-review" onClick={() => showModal(currentReview3)}>
                                 <strong>{keyword3}</strong>
                             </div>
                         </div>
+                            <Modal
+                                visible={visible}
+                                title="Review Details"
+                                centered
+                                onCancel={() => setVisible(false)}
+                                footer={null}
+                            >
+                                <p>{modalContent}</p>
+                            </Modal>
                         <div className="item-description">
                             {"1. " + currentAttri1}
                         </div>
