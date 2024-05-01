@@ -22,8 +22,8 @@ function StartContainer() {
     return (
       <div className="Home">
         <div className="lander">
-            <h1>Study title here</h1>
-            <p>This is the start page. Welcome to our study.</p>
+            <h1>Human-Machine Interaction and Greater Zero-Sum Gains</h1>
+            <p>Welcome to our study. Thank you for participating in our study.</p>
 
             <div>
                 <input type="checkbox" id="agree" onChange={checkboxHandler} />

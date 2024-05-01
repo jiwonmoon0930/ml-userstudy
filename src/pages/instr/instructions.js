@@ -48,8 +48,8 @@ function InstructionsContainer() {
         <div className="instr-text"> 
             You have recently relocated to a new city and are in the process of furnishing your new apartment.
             You will be using a second-hand marketplace website to find various pieces of furniture such as chairs,
-            tables, lamps, bed frames, drawers, etc. For each item, we will provide you with pictures, pricing details, and descriptions.
-            Your task is to evaluate each item based on the provided information and decide whether or not you would proceed to purchase the product.
+            tables, lamps, bed frames, drawers, etc. For each item, we will provide you with information of the item.
+            Your task is to evaluate each item based on the provided information and decide whether or not you would trust the seller.
         </div>
 
         <div className="instr-text"> 
