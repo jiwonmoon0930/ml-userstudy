@@ -22,7 +22,7 @@ function StartContainer() {
     return (
       <div className="Home">
         <div className="lander">
-            <h1>Human-Machine Interaction and Greater Zero-Sum Gains</h1>
+            <h1>AI-Based Solution Design for Enhanced Human-AI Collaboration in Online Second-Hand Marketplace</h1>
             <p>Welcome to our study. Thank you for participating in our study.</p>
 
             <div>
