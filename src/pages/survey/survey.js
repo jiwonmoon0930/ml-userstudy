@@ -16,6 +16,8 @@ const SurveyContainer = () => {
         q2: values.Q2,
     };
     sendData(data);
+    let path = '/#/End';
+      window.location.assign(path);
   };
 
   const sendData = (obj) => {
@@ -38,15 +40,10 @@ const SurveyContainer = () => {
 
   // create a new user here 
   useEffect(() => {
-  fetch('http://localhost:8080/setup')
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-      console.log(data['task_number']);
-      // send user id as well
-      setTmpUser(data['user_id'])
-      });
-  }, []);
+    const userId = localStorage.getItem('user-id');
+    console.log("Retrieved User ID:", userId);
+    setTmpUser(userId);
+}, []);
     
 
   return (

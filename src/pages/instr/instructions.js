@@ -6,19 +6,23 @@ function InstructionsContainer() {
 
     const [agree, setAgree] = useState(false);
     const [task, setTask] = useState(0);
+    const [user_id, setUserId] = useState("");
 
     const checkboxHandler = () => {
         setAgree(!agree);
     }
 
     const routeChange = () =>{ 
-        if (task == 1) {
+        if (task === 1) {
+            console.log(user_id);
             let path = '/#/Main1';
             window.location.assign(path);
-        } else if (task == 2) {
+        } else if (task === 2) {
+            console.log(user_id);
             let path = '/#/Main2';
             window.location.assign(path);
         } else {
+            console.log(user_id);
             let path = '/#/Main3';
             window.location.assign(path);
         }
@@ -34,6 +38,7 @@ function InstructionsContainer() {
             setTask(data['task_number']);
             // send user id as well
             localStorage.setItem('user-id', data['user_id']);
+            setUserId(data['user_id']);
             console.log(localStorage)
         });
     }, []);

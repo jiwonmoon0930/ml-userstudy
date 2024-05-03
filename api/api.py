@@ -295,13 +295,8 @@ def setup():
 
 @app.route('/setup_main', methods=['GET'])
 def setup_main():
-    # fix the task to 1 to display Main1
-    task_num = 1
-    new_user = User(task=task_num)
-    db.session.add(new_user)
-    db.session.commit()
-    user_id = new_user.user_id
-    response = {'user_id': user_id, 'task_number': task_num}
+    user_id = request.args.get('user_id', type=int)
+    response = {'user_id': user_id}
     return jsonify(response)
 
 # use case 1: assign a random task to the current user and create an id

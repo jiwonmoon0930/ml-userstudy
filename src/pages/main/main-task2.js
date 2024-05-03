@@ -5,7 +5,6 @@ import "./main-task1.css";
 
 function Main2Container() {
     const [text, setText] = useState("");
-    const [task, setTask] = useState(0);
     const [choice, setChoice] = useState(0);
     const [tmpUser, setTmpUser] = useState(0);
     const [imageData, setImageData] = useState([]);
@@ -87,17 +86,11 @@ function Main2Container() {
         });
     }, []);
 
-    // create a new user here 
+    // get user_id here
     useEffect(() => {
-        fetch('http://localhost:8080/setup')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            console.log(data['task_number']);
-            setTask(data['task_number']);
-            // send user id as well
-            setTmpUser(data['user_id'])
-        });
+        const userId = localStorage.getItem('user-id');
+        console.log("Retrieved User ID:", userId);
+        setTmpUser(userId);
     }, []);
     
 
