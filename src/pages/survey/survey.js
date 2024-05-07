@@ -52,27 +52,27 @@ const SurveyContainer = () => {
         <div className="title"> Study survey</div>
         <Form.Item 
             name="Q1" 
-            label="1. How confident were you in your responses to complete the task?"
+            label="1. Were you confident in your responses when completing the task?"
             rules={[{ required: true, message: "Please select an option!" }]}>
             <Radio.Group>
-                <Radio value="1">Very unconfident</Radio>
-                <Radio value="2">Unconfident</Radio>
-                <Radio value="3">Average</Radio>
-                <Radio value="4">Confident</Radio>
-                <Radio value="5">Very confident</Radio>
+            <Radio value="1">Strongly Disagree</Radio>
+                <Radio value="2">Disagree</Radio>
+                <Radio value="3">Neutral</Radio>
+                <Radio value="4">Agree</Radio>
+                <Radio value="5">Strongly Agree</Radio>
             </Radio.Group>
         </Form.Item>
 
         <Form.Item 
             name="Q2" 
-            label="2. How much did you rely on the AI's suggestion?"
+            label="2. Do you think that the AI contributed to the task more than you did?"
             rules={[{ required: true, message: "Please select an option!" }]}>
             <Radio.Group>
-                <Radio value="1">Very unrelient</Radio>
-                <Radio value="2">Unrelient</Radio>
-                <Radio value="3">Average</Radio>
-                <Radio value="4">Relient</Radio>
-                <Radio value="5">Very Relient</Radio>
+                <Radio value="1">Strongly Disagree</Radio>
+                <Radio value="2">Disagree</Radio>
+                <Radio value="3">Neutral</Radio>
+                <Radio value="4">Agree</Radio>
+                <Radio value="5">Strongly Agree</Radio>
             </Radio.Group>
         </Form.Item>
 

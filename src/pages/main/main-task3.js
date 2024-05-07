@@ -14,10 +14,6 @@ function Main3Container() {
     const [currentPrice, setCurrentPrice] = useState("");
     const [currentDescription, setCurrentDescription] = useState("");
 
-    const [keyword1, setKeyword1] = useState("");
-    const [keyword2, setKeyword2] = useState("");
-    const [keyword3, setKeyword3] = useState("");
-
     const [currentReview1, setCurrentReview1] = useState("");
     const [currentReview2, setCurrentReview2] = useState("");
     const [currentReview3, setCurrentReview3] = useState("");
@@ -70,10 +66,6 @@ function Main3Container() {
                 setCurrentUser(imageData[count].user);
                 setCurrentPrice(imageData[count].price);
                 setCurrentDescription(imageData[count].description);
-
-                setKeyword1(imageData[count].keyword1);
-                setKeyword2(imageData[count].keyword2);
-                setKeyword3(imageData[count].keyword3);
 
                 setCurrentReview1(imageData[count].review1);
                 setCurrentReview2(imageData[count].review2);
@@ -151,10 +143,6 @@ function Main3Container() {
             setCurrentPrice(data['imgs'][0].price);
             setCurrentDescription(data['imgs'][0].description);
 
-            setKeyword1(data['imgs'][0].keyword1);
-            setKeyword2(data['imgs'][0].keyword2);
-            setKeyword3(data['imgs'][0].keyword3);
-
             setCurrentReview1(data['imgs'][0].review1);
             setCurrentReview2(data['imgs'][0].review2);
             setCurrentReview3(data['imgs'][0].review3);
@@ -191,40 +179,33 @@ function Main3Container() {
                         <div className="item-price">
                             {currentPrice}
                         </div>
+
                         <div className="item-description">
                             {"\"" + currentDescription + "\""}
                         </div>
-                        <div className="review-container">
-                            <div className="item-review" onClick={() => showModal(currentReview1)}>
-                                <strong>{keyword1}</strong>
-                            </div>
-                            <div className="item-review" onClick={() => showModal(currentReview2)}>
-                                <strong>{keyword2}</strong>
-                            </div>
-                            <div className="item-review" onClick={() => showModal(currentReview3)}>
-                                <strong>{keyword3}</strong>
-                            </div>
+
+                        <div className="subtitle">
+                            AI Suggestion
                         </div>
-                            <Modal
-                                visible={visible}
-                                title="Review Details"
-                                centered
-                                onCancel={() => setVisible(false)}
-                                footer={null}
-                            >
-                                <p>{modalContent}</p>
-                            </Modal>
-                        <div className="item-description">
+                        <div className="item-AI">
                             {"1. " + currentAttri1}
                         </div>
-                        <div className="item-description">
+                        <div className="item-AI">
                             {"2. " + currentAttri2} 
                         </div>
-                        <div className="item-description">
+                        <div className="item-AI">
                             {"3. " + currentAttri3} 
                         </div>
-                        <div className="item-description">
+                        <div className="item-AI">
                             {"4. " + currentAttri4} 
+                        </div>
+                        <div className="item-AI">
+                            {"5. Customer reivew: "}
+                            <div className="list">
+                                <li> {currentReview1} </li>
+                                <li> {currentReview2} </li>
+                                <li> {currentReview3} </li>
+                            </div>
                         </div>
                     </div>
                 </div>
